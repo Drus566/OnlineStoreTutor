@@ -23,13 +23,14 @@ tr.list_line_odd {
 td.image {
     // Hide this on mobile devices
     display: none;
-    @media​ (min-width: 30em) {
+    @media (min-width: 30em){
         display: block;
         img {
             height: 11.3em;
         }
     }
 }
+
 td.description {
     h1 {
         font-size: 1.4em;
