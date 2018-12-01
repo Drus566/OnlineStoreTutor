@@ -43,6 +43,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.js { @current_product = @product }
         format.json { render :show, status: :ok, location: @product }
 
   # We’re using the existing store/index view, which requires a list of products to
