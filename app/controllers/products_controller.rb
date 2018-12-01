@@ -44,6 +44,16 @@ class ProductsController < ApplicationController
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
+
+  # We’re using the existing store/index view, which requires a list of products to
+  # have been set into the @products instance variable. We call render_to_string to
+  # render the view as a string, passing layout: false , because we want only this view
+  # and not the entire page. Broadcast messages typically consist of Ruby hashes,
+  # which are converted to JSON to go across the wire and end up as JavaScript
+  # objects. In this case, we use html as the hash key.
+        @products = Product.all
+        ActionCable.server.broadcast 'products',
+          html: render_to_string('store/index', layout: false)
       else
         format.html { render :edit }
         format.json { render json: @product.errors, status: :unprocessable_entity }
