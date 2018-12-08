@@ -72,6 +72,23 @@ class ProductsController < ApplicationController
     end
   end
 
+  def who_bought
+    @product = Product.find(params[:id])
+    @latest_order = @product.orders.order(:updated_at).last
+    #Устаревший?
+    if stale?(@latest_order)
+      respond_to do |format|
+        format.atom
+        format.json { render json: @latest_order, status: :ok }
+        if(@latest_order)
+          format.html { render :who_bought }
+        else
+          format.html { render :who_bought, notice: 'Order not found' }
+        end
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

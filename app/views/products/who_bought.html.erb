@@ -1,0 +1,22 @@
+<% if notice %><p id="notice"><%= notice %></p><% end %>
+<h1>Order</h1>
+
+<table>
+    <thead>
+        <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th> pay type</th>
+        <th colspan="3"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><%= @latest_order.address %></td>
+            <td><%= @latest_order.email %></td>
+            <td><%= @latest_order.pay_type %></td>
+        </tr>
+    </tbody>
+</table>

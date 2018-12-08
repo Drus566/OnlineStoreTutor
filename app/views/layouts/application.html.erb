@@ -16,12 +16,13 @@
     </header>
     <section class="content">
       <nav class="side_nav">
-        <% if @cart %>
-          <div id="cart" class="carts">
-            <%= render_if @cart && @cart.line_items.any?, @cart %>
-          </div>
+        <% unless current_page?(:controller => 'orders', :action => 'new') %>
+          <% if @cart %>
+            <div id="cart" class="carts">
+              <%= render_if @cart && @cart.line_items.any?, @cart %>
+            </div>
+          <% end %>
         <% end %>
-        
         <div class="time"><%= Time.now.to_s(:time) %></div>
         <ul>
           <li><a href="/">Home</a></li>
