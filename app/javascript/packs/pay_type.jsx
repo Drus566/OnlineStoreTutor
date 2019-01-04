@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDom from 'react-dom'
+import ReactDOM from 'react-dom'
 import PayTypeSelector from 'PayTypeSelector'
 
 // Due to how Turbolinks works, that event isn’t fired every time our page is
@@ -12,5 +12,5 @@ document.addEventListener('turbolinks:load', function(){
     var element = document.getElementById("pay-type-component");
     //is to replace element with the React component
     // PayTypeSelector .
-    React.render(<PayTypeSelector />, element);
+    ReactDOM.render(<PayTypeSelector />, element);
 });
